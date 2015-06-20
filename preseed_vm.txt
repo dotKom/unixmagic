@@ -1,0 +1,49 @@
+#d-i debian-installer/locale string en_US
+d-i debian-installer/language string en
+d-i debian-installer/country string NO
+d-i debian-installer/locale string en_US.UTF-8
+d-i keyboard-configuration/xkb-keymap select us
+d-i netcfg/choose_interface select auto
+d-i netcfg/get_hostname string default-hostname
+d-i netcfg/get_hostname seen false
+d-i netcfg/get_domain string default-domain
+d-i netcfg/get_domain seen false
+d-i netcfg/wireless_wep string
+d-i mirror/country string manual
+d-i mirror/http/hostname string ftp.no.debian.org
+d-i mirror/http/directory string /debian
+d-i mirror/http/proxy string
+d-i passwd/make-user boolean false
+d-i passwd/root-login boolean true
+#d-i passwd/root-password password derp
+#d-i passwd/root-password-again password derp
+d-i clock-setup/utc boolean true
+d-i time/zone string Europe/Oslo
+d-i clock-setup/ntp boolean true
+d-i partman-auto/method string regular
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-md/device_remove_md boolean true
+d-i partman-lvm/confirm boolean true
+d-i partman-lvm/confirm_nooverwrite boolean true
+d-i partman-auto/choose_recipe select atomic
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+d-i partman-md/confirm boolean true
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+d-i partman/mount_style select uuid
+d-i grub-installer/only_debian boolean true
+d-i grub-installer/bootdev string
+d-i grub-installer/choose_bootdev   select /dev/xvda
+d-i base-installer/install-recommends boolean false
+d-i base-installer/kernel/image string linux-image-amd64
+popularity-contest popularity-contest/participate boolean false
+tasksel tasksel/first multiselect standard, ssh-server
+d-i pkgsel/include string curl vim
+d-i finish-install/reboot_in_progress note
+d-i preseed/late_command string mkdir -p /target/root/.ssh; echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmA0OBnbMvGBIKbIdbqFPpuO6vCA1w0QVC8vMC7n6Dp root@jb" >> /target/root/.ssh/authorized_keys
+d-i cdrom-detect/eject boolean true
