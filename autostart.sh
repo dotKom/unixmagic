@@ -4,7 +4,7 @@ usage="$(basename "$0") [-a] [-h] vm-name -- program to set autostart of vm(s)
 
 where:
     -h  show this help text
-    -a  do for all vms (in xe vm-list)
+    -a  do for all vms (in xe vm-list)"
 
 while getopts ':hs:' option; do
   case "$option" in
@@ -33,6 +33,6 @@ function add-all {
 }
 
 function add-vm {
-    VM="$(xe vm-list | grep -B 1 -w $S1 | grep uuid | cut -d":" -f2)"
+    VM="$(xe vm-list | grep -B 1 -w $1 | grep uuid | cut -d":" -f2)"
     echo $VM
 }
